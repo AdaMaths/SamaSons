@@ -3,18 +3,17 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// Remplace les valeurs ci-dessous par la configuration de ton projet Firebase.
 const firebaseConfig = {
-  apiKey: "REMPLACER_API_KEY",
-  authDomain: "REMPLACER_PROJECT_ID.firebaseapp.com",
-  projectId: "REMPLACER_PROJECT_ID",
-  storageBucket: "REMPLACER_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "REMPLACER_SENDER_ID",
-  appId: "REMPLACER_APP_ID"
+  apiKey: "AIzaSyCSOHIVtEyC9xb52uwuGgKGzWu9cgGmnSw",
+  authDomain: "project-35f36130-8190-4717-af1.firebaseapp.com",
+  projectId: "project-35f36130-8190-4717-af1",
+  storageBucket: "project-35f36130-8190-4717-af1.firebasestorage.app",
+  messagingSenderId: "714063514010",
+  appId: "1:714063514010:web:cffa3ee28f2a4bfdcd5223"
 };
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-export const firebaseConfigured = !firebaseConfig.apiKey.startsWith("REMPLACER");
+export const firebaseConfigured = true;

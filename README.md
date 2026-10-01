@@ -16,22 +16,25 @@ npm install
 npm run dev
 ```
 
-## 2. Configurer Firebase
-1. Crée un projet sur https://console.firebase.google.com/
-2. Ajoute une application Web et copie sa configuration dans `src/firebase.js`.
-3. Active Authentication > Sign-in method > Email/Password.
-4. Crée ton utilisateur administrateur dans Authentication.
-5. Copie son UID et remplace `ADMIN_UID` dans `firestore.rules` et `storage.rules`.
-6. Crée la base Firestore et active Storage.
-7. Publie les règles depuis la console Firebase (Firestore Database > Rules et Storage > Rules).
+## 2. Configuration Firebase
+Le dépôt est relié au projet Firebase `project-35f36130-8190-4717-af1`. La configuration de son application Web est dans `src/firebase.js`, et l'UID administrateur est déjà renseigné dans `firestore.rules` et `storage.rules`.
 
-**Important :** ne déploie jamais les règles avec `ADMIN_UID` inchangé. Les règles ci-jointes permettent la lecture publique, mais réservent les modifications à l'UID configuré.
+Dans la console Firebase :
+1. Active Authentication > Sign-in method > Email/Password et crée le compte administrateur.
+2. Active Firebase Storage depuis https://console.firebase.google.com/project/project-35f36130-8190-4717-af1/storage en cliquant sur « Get started ».
+3. Vérifie que l'UID du compte administrateur correspond à celui indiqué dans les deux fichiers de règles.
+
+Le catalogue Firestore est en lecture publique ; seuls les utilisateurs associés à l'UID administrateur peuvent le modifier. Les fichiers audio sont lisibles publiquement et leur écriture est réservée à l'administrateur.
 
 ## 3. Lancer et déployer
 ```bash
+npm install
+npm run dev
 npm run build
+firebase login
+firebase deploy --only hosting,firestore:rules,storage
 ```
-Pousse le dossier dans un dépôt GitHub, puis importe ce dépôt dans Vercel. Vercel détecte Vite automatiquement ; commande de build `npm run build`, dossier de sortie `dist`.
+Le site est publié sur https://project-35f36130-8190-4717-af1.web.app. Le projet est configuré dans `.firebaserc` et `firebase.json`. Active Storage dans la console avant le premier déploiement de ses règles.
 
 ## 4. Installer sur Android
 Une fois publié en HTTPS, ouvre le site dans Chrome puis menu ⋮ > Ajouter à l'écran d'accueil / Installer l'application.
