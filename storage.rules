@@ -1,0 +1,13 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      // Remplacer ADMIN_UID par l'UID Firebase du compte administrateur.
+      return request.auth != null && request.auth.uid == "ADMIN_UID";
+    }
+    match /audio/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

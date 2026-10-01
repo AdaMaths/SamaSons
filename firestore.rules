@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      // Remplacer ADMIN_UID par l'UID Firebase du compte administrateur.
+      return request.auth != null && request.auth.uid == "ADMIN_UID";
+    }
+    match /songs/{songId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}
