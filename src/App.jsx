@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Music2, Search, Plus, Trash2, Play, Pause, Headphones, Disc3, Mic2, Upload, LogIn, LogOut, X, ListMusic, ShieldCheck, FolderMusic } from "lucide-react";
+import { Music2, Search, Plus, Trash2, Play, Pause, Headphones, Disc3, Mic2, Upload, LogIn, LogOut, X, ListMusic, ShieldCheck, Folder } from "lucide-react";
 import { auth, db, storage, firebaseConfigured } from "./firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
@@ -101,7 +101,7 @@ export default function App() {
       {notice && <div className="notice" role="status">{notice}<button onClick={()=>setNotice("")}><X size={15}/></button></div>}
       <section className="section-head"><div><span className="eyebrow">EXPLORE TA COLLECTION</span><h2>Ma bibliothèque</h2></div>{isAdmin && <button className="primary-btn" onClick={()=>setShowAdd(true)}><Plus size={17}/> Ajouter un son</button>}</section>
       <div className="search-wrap"><Search size={19}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Rechercher un son, un artiste..."/>{search && <button onClick={()=>setSearch("")}><X size={16}/></button>}</div>
-      <div className="category-row">{categories.map(c=><button key={c} className={`category-chip ${category===c?"selected":""}`} onClick={()=>setCategory(c)}>{c==="Tout"?<ListMusic size={15}/>:<FolderMusic size={15}/>} {c}{c!=="Tout"&&<span>{countBy(c)}</span>}</button>)}</div>
+      <div className="category-row">{categories.map(c=><button key={c} className={`category-chip ${category===c?"selected":""}`} onClick={()=>setCategory(c)}>{c==="Tout"?<ListMusic size={15}/>:<Folder size={15}/>} {c}{c!=="Tout"&&<span>{countBy(c)}</span>}</button>)}</div>
       <section className="library-layout">
         <div className="songs-column"><div className="list-heading"><span>{category==="Tout"?"Tous les morceaux":category}</span><span>{filtered.length} titre{filtered.length!==1?"s":""}</span></div>
           {filtered.length===0 ? <div className="empty"><Disc3 size={34}/><strong>Aucun son trouvé</strong><span>Essaie un autre mot ou une autre catégorie.</span></div> :
