@@ -3,7 +3,7 @@ service firebase.storage {
   match /b/{bucket}/o {
     function isAdmin() {
       // Remplacer ADMIN_UID par l'UID Firebase du compte administrateur.
-      return request.auth != null && request.auth.uid == "ADMIN_UID";
+      return request.auth != null && request.auth.uid == "0sHWEapD7cgGG1BRiOqB0jRfAfR2";
     }
     match /audio/{fileName} {
       allow read: if true;
